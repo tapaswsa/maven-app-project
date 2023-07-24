@@ -1,14 +1,23 @@
 pipeline {
     agent any
+    options {
+      skipDefaultCheckout true
+    }
+    tools {
+      maven 'Maven_Home'
+    }
     stages {
-        stage ('SCM') {
+        stage ('------SCM START------') {
             steps {
-               echo "SCM"
+               git branch: 'feature/APP-1', credentialsId: 'tapaswini-github-creds', url: 'https://github.com/tapaswsa/maven-app-project.git'
+               echo "------- SCM STOP ------"
             }
         }
         stage ('Build') {
             steps {
-               echo "Build"
+               echo "Build start"
+               sh "mvn clean install -DSkiptest"
+               sh "ls -ltr target"
             }
         }
         stage ('Sonar Scan') {
