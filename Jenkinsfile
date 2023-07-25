@@ -22,7 +22,10 @@ pipeline {
         }
         stage ('Sonar Scan') {
             steps {
-                echo "Sonar Scan" 
+                echo "Sonar Scan"
+                withSonarQubeEnv('Sonarqube Server') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
         stage ('Push Artifacts to Jfrog Artifactory') {
