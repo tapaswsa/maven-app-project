@@ -34,9 +34,13 @@ pipeline {
         stage ('Artifactory') {
             steps {
                 echo "Push Artifacts to Jfrog Artifactory"
-                withCredentials([usernamePassword(credentialsId: 'Jfrog-ayaz-creds', passwordVariable: 'JFROG_PASSWORD', usernameVariable: 'JFROG_USER')]) {
-                    jf "rt u  target/*.jar --flat=true tapu-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${JFROG_USER} --password ${JFROG_PASSWORD}"
-                    jf "rt u  pom.xml --flat=true tapu-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${JFROG_USER} --password ${JFROG_PASSWORD}"
+                //withCredentials([usernamePassword(credentialsId: 'Jfrog-ayaz-creds', passwordVariable: 'JFROG_PASSWORD', usernameVariable: 'JFROG_USER')]) {
+                  //  jf "rt u  target/*.jar --flat=true tapu-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${JFROG_USER} --password ${JFROG_PASSWORD}"
+                    //jf "rt u  pom.xml --flat=true tapu-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${JFROG_USER} --password ${JFROG_PASSWORD}"
+                  withCredentials([usernamePassword(credentialsId: 'Jfrog-ayaz-creds', passwordVariable: 'JFROG_PASSWORD', usernameVariable: 'JFROG_USER')]) {
+                    jf "rt u  target/*.jar --flat=true xoriant-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${JFROG_USER} --password ${JFROG_PASSWORD}"
+                    jf "rt u  pom.xml --flat=true xoriant-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${JFROG_USER} --password ${JFROG_PASSWORD}"
+        
                 }
             }
         }
