@@ -36,7 +36,8 @@ pipeline {
                 echo "Push Artifacts to Jfrog Artifactory"
                 
                 withCredentials([usernamePassword(credentialsId: 'Jfrog-ayaz-creds', passwordVariable: 'MYPASSWORD', usernameVariable: 'MYUSER')]) {
-                    jf "rt u  target/*.jar --flat=true tapu-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${MYUSER} --password ${MYPASSWORD}"   
+                    jf "rt u  target/*.jar --flat=true tapu-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${MYUSER} --password ${MYPASSWORD}"
+                    jf "rt u  pom.xml --flat=true tapu-maven/${env.JOB_NAME}/${env.BUILD_NUMBER}/ --url ${ARTIFACTORY_URL} --user ${MYUSER} --password ${MYPASSWORD}"
                 }    
             }
         }
