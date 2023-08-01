@@ -7,6 +7,7 @@ pipeline {
     }
     tools {
       maven 'Maven_Home'
+      jfrog 'jfrog-cli'
     }
     stages {
         stage ('------SCM START------') {
