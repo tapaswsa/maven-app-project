@@ -2,20 +2,20 @@ def ARTIFACTORY_URL = 'https://xorazn.jfrog.io/artifactory/'
 
 pipeline {
     agent any
-    options {
-      skipDefaultCheckout true
-    }
+    //options {
+     // skipDefaultCheckout true
+    //}
     tools {
       maven 'Maven_Home'
       jfrog 'jfrog-cli'
     }
     stages {
-        stage ('------SCM START------') {
-            steps {
-               git branch: 'feature/APP-1', credentialsId: 'tapaswini-github-creds', url: 'https://github.com/tapaswsa/maven-app-project.git'
-               echo "------- SCM STOP ------"
-            }
-        }
+    //    stage ('------SCM START------') {
+      //      steps {
+        //       git branch: 'feature/APP-1', credentialsId: 'tapaswini-github-creds', url: 'https://github.com/tapaswsa/maven-app-project.git'
+          //     echo "------- SCM STOP ------"
+           // }
+        //}
         stage ('Build') {
             steps {
                echo "Build start"
